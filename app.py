@@ -23,7 +23,19 @@ def fetch_poster(movie_id):
 
 @st.cache_data(show_spinner=False)
 def load_movies() -> pd.DataFrame:
-    return pickle.load(open('model/movie_list.pkl','rb'))
+    try:
+        return pickle.load(open('model/movie_list.pkl','rb'))
+    except FileNotFoundError:
+        st.warning("Movie list not found in 'model/movie_list.pkl'. Using a small demo dataset.")
+        # Minimal demo dataset so the app can still run on first deploy
+        demo = pd.DataFrame([
+            {"movie_id": 19995, "title": "Avatar", "cast": "[]", "crew": "[]"},
+            {"movie_id": 679, "title": "Aliens", "cast": "[]", "crew": "[]"},
+            {"movie_id": 10191, "title": "How to Train Your Dragon", "cast": "[]", "crew": "[]"},
+            {"movie_id": 597, "title": "Titanic", "cast": "[]", "crew": "[]"},
+            {"movie_id": 680, "title": "Pulp Fiction", "cast": "[]", "crew": "[]"},
+        ])
+        return demo
 
 
 @st.cache_data(show_spinner=True)
