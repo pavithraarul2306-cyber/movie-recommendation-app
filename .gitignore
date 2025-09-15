@@ -1,0 +1,26 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.swp
+.venv/
+.venv311/
+.artifacts/
+artifacts/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Node/React
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
